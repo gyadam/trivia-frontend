@@ -17,7 +17,7 @@ class FormView extends Component {
 
   componentDidMount(){
     $.ajax({
-      url: `https://udacitytrivia.herokuapp.com/categories`,
+      url: `https://trivbackend.herokuapp.com/categories`,
       type: "GET",
       success: (result) => {
         this.setState({ categories: result.categories })
@@ -34,7 +34,7 @@ class FormView extends Component {
   submitQuestion = (event) => {
     event.preventDefault();
     $.ajax({
-      url: 'https://udacitytrivia.herokuapp.com/questions',
+      url: 'https://trivbackend.herokuapp.com/questions',
       type: "POST",
       dataType: 'json',
       contentType: 'application/json',
