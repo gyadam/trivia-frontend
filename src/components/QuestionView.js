@@ -84,7 +84,7 @@ class QuestionView extends Component {
       contentType: 'application/json',
       data: JSON.stringify({searchTerm: searchTerm}),
       xhrFields: {
-        withCredentials: true
+        withCredentials: false
       },
       crossDomain: true,
       success: (result) => {

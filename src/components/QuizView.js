@@ -57,7 +57,7 @@ class QuizView extends Component {
         quiz_category: this.state.quizCategory
       }),
       xhrFields: {
-        withCredentials: true
+        withCredentials: false
       },
       crossDomain: true,
       success: (result) => {
