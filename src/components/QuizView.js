@@ -22,7 +22,7 @@ class QuizView extends Component {
 
   componentDidMount(){
     $.ajax({
-      url: `https://udacitytrivia.herokuapp.com/categories`,
+      url: `https://trivbackend.herokuapp.com/categories`,
       type: "GET",
       success: (result) => {
         this.setState({ categories: result.categories })
@@ -48,7 +48,7 @@ class QuizView extends Component {
     if(this.state.currentQuestion.id) { previousQuestions.push(this.state.currentQuestion.id) }
 
     $.ajax({
-      url: 'https://udacitytrivia.herokuapp.com/quizzes',
+      url: 'https://trivbackend.herokuapp.com/quizzes',
       type: "POST",
       dataType: 'json',
       contentType: 'application/json',

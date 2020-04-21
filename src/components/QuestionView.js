@@ -23,7 +23,7 @@ class QuestionView extends Component {
 
   getQuestions = () => {
     $.ajax({
-      url: `https://udacitytrivia.herokuapp.com/questions?page=${this.state.page}`,
+      url: `https://trivbackend.herokuapp.com/questions?page=${this.state.page}`,
       type: "GET",
       success: (result) => {
         this.setState({
@@ -60,7 +60,7 @@ class QuestionView extends Component {
 
   getByCategory= (id) => {
     $.ajax({
-      url: `https://udacitytrivia.herokuapp.com/categories/${id}/questions`,
+      url: `https://trivbackend.herokuapp.com/categories/${id}/questions`,
       type: "GET",
       success: (result) => {
         this.setState({
@@ -78,7 +78,7 @@ class QuestionView extends Component {
 
   submitSearch = (searchTerm) => {
     $.ajax({
-      url: `https://udacitytrivia.herokuapp.com/questions`,
+      url: `https://trivbackend.herokuapp.com/questions`,
       type: "POST",
       dataType: 'json',
       contentType: 'application/json',
@@ -105,7 +105,7 @@ class QuestionView extends Component {
     if(action === 'DELETE') {
       if(window.confirm('are you sure you want to delete the question?')) {
         $.ajax({
-          url: `https://udacitytrivia.herokuapp.com/questions/${id}`,
+          url: `https://trivbackend.herokuapp.com/questions/${id}`,
           type: "DELETE",
           success: (result) => {
             this.getQuestions();
