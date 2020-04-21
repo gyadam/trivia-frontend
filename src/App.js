@@ -21,8 +21,8 @@ class App extends Component {
       <Router>
         <Switch>
           <Route path="https://udacitytrivia.herokuapp.com/" exact component={QuestionView} />
-          <Route path="https://udacitytrivia.herokuapp.com/" component={FormView} />
-          <Route path="https://udacitytrivia.herokuapp.com/" component={QuizView} />
+          <Route path="https://udacitytrivia.herokuapp.com/add" component={FormView} />
+          <Route path="https://udacitytrivia.herokuapp.com/play" component={QuizView} />
           <Route component={QuestionView} />
         </Switch>
       </Router>
