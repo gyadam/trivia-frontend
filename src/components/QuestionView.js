@@ -4,6 +4,7 @@ import '../stylesheets/App.css';
 import Question from './Question';
 import Search from './Search';
 import $ from 'jquery';
+import EditView from './EditView';
 
 class QuestionView extends Component {
   constructor(){
@@ -15,6 +16,10 @@ class QuestionView extends Component {
       categories: {},
       currentCategory: null,
     }
+  }
+
+  navTo(uri, id){
+    window.location.href = window.location.origin + uri + '/' + id;
   }
 
   componentDidMount() {
@@ -116,6 +121,9 @@ class QuestionView extends Component {
           }
         })
       }
+    }
+    else if(action === 'EDIT'){
+      this.navTo('/edit', id)
     }
   }
 
