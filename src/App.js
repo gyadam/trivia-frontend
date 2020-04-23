@@ -12,7 +12,6 @@ import QuestionView from './components/QuestionView';
 import Header from './components/Header';
 import QuizView from './components/QuizView';
 import EditView from './components/EditView';
-import Profile from "./components/Profile";
 
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
@@ -20,10 +19,10 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
 
-  /* const { loading } = useAuth0();
+  const { loading } = useAuth0();
   if (loading) {
     return <div>Loading...</div>;
-  } */
+  }
 
   return (
     <div className="App">
