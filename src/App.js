@@ -11,27 +11,37 @@ import FormView from './components/FormView';
 import QuestionView from './components/QuestionView';
 import Header from './components/Header';
 import QuizView from './components/QuizView';
-import EditView from './components/EditView'
+import EditView from './components/EditView';
+import Profile from "./components/Profile";
 
+import { useAuth0 } from "./react-auth0-spa";
+import history from "./utils/history";
+import PrivateRoute from "./components/PrivateRoute";
 
-class App extends Component {
-  render() {
-    return (
+function App() {
+
+  /* const { loading } = useAuth0();
+  if (loading) {
+    return <div>Loading...</div>;
+  } */
+
+  return (
     <div className="App">
-      <Header path />
-      <Router>
+      <Router history={history}>
+        <header>
+          <Header />
+        </header>
         <Switch>
-          <Route path="/" exact component={QuestionView} />
-          <Route path="/add" component={FormView} />
-          <Route path="/play" component={QuizView} />
-          <Route path="/edit/:id" component={EditView} />
-          <Route component={QuestionView} />
+          <Route path="/" exact component={QuizView} />
+          <PrivateRoute path="/list" exact component={QuestionView} />
+          <PrivateRoute path="/add" component={FormView} />
+          <PrivateRoute path="/edit/:id" component={EditView} />
+          <PrivateRoute component={QuestionView} />
         </Switch>
       </Router>
     </div>
   );
 
-  }
 }
 
 export default App;

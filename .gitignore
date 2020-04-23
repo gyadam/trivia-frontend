@@ -3,3 +3,5 @@ __pycache__/
 .vscode/
 node_modules/
 build/
+Profile.js
+package-lock.json
