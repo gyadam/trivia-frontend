@@ -1,59 +1,49 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import $ from 'jquery';
 
 import '../stylesheets/EditView.css';
 
-class EditView extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      question_id: "",
-      question: "",
-      answer: "",
-      difficulty: 1,
-      category: 1,
-      categories: {}
-    }
-    //console.log(this.difficulty)
-  }
+function navTo(uri){
+  window.location.href = window.location.origin + uri;
+}
 
-  componentDidMount(props){
-    this.getCategories();
-    this.getQuestion();
-    console.log(this.state.question);
-  }
+function EditView(props) {
 
-  navTo(uri){
-    window.location.href = window.location.origin + uri;
-  }
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [categories, setCategories] = useState([]);
 
-  getCategories = () => {
+  const [state , setState] = useState({
+    question : "",
+    answer : "",
+    difficulty: 1,
+    category: 1
+  })
+
+  useEffect(() => {
     $.ajax({
       url: `https://trivbackend.herokuapp.com/categories`,
       type: "GET",
       success: (result) => {
-        this.setState({ categories: result.categories })
+        setIsLoaded(true);
+        setCategories(result.categories);
         return;
       },
       error: (error) => {
         alert('Unable to load categories. Please try your request again')
         return;
       }
-    })
-  }
-
-  getQuestion = () => {
+    });
     $.ajax({
-      url: `https://trivbackend.herokuapp.com/questions/${this.props.match.params.id}`,
+      url: `https://trivbackend.herokuapp.com/questions/${props.match.params.id}`,
       type: "GET",
       success: (result) => {
-        this.setState({
+        setState({
           question: result.question.question,
           answer: result.question.answer,
           difficulty: result.question.difficulty,
           category: result.question.category
         });
-        console.log("state set!")
         return;
       },
       error: (error) => {
@@ -61,29 +51,28 @@ class EditView extends Component {
         return;
       }
     })
-  }
 
+  }, [])
 
-  editQuestion = (event) => {
+  const editQuestion = (event) => {
     event.preventDefault();
     $.ajax({
-      url: `https://trivbackend.herokuapp.com/questions/${this.props.match.params.id}`,
+      url: `https://trivbackend.herokuapp.com/questions/${props.match.params.id}`,
       type: "PATCH",
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({
-        question: this.state.question,
-        answer: this.state.answer,
-        difficulty: this.state.difficulty,
-        category: this.state.category
+        question: state.question,
+        answer: state.answer,
+        difficulty: state.difficulty,
+        category: state.category
       }),
       xhrFields: {
         withCredentials: false
       },
       crossDomain: true,
       success: (result) => {
-        //document.getElementById("add-question-form").reset();
-        this.navTo('/');
+        navTo('/');
         return;
       },
       error: (error) => {
@@ -93,26 +82,29 @@ class EditView extends Component {
     })
   }
 
-  handleChange = (event) => {
-    this.setState({[event.target.name]: event.target.value})
+  const handleChange = (e) => {
+    const {name , value} = e.target
+    setState( prevState => ({
+        ...prevState,
+        [name] : value
+    }))
   }
 
-  render() {
     return (
       <div id="edit-form">
         <h2>Add a New Trivia Question</h2>
-        <form className="form-view" id="add-question-form" onSubmit={this.editQuestion}>
+        <form className="form-view" id="add-question-form" onSubmit={editQuestion}>
           <label>
             Question
-            <input type="text" name="question" value={this.state.question} onChange={this.handleChange}/>
+            <input type="text" name="question" value={state.question} onChange={handleChange}/>
           </label>
           <label>
             Answer
-            <input type="text" name="answer" value={this.state.answer} onChange={this.handleChange}/>
+            <input type="text" name="answer" value={state.answer} onChange={handleChange}/>
           </label>
           <label>
             Difficulty
-            <select name="difficulty" value = {this.state.difficulty} onChange={this.handleChange}>
+            <select name="difficulty" value = {state.difficulty} onChange={handleChange}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -122,10 +114,10 @@ class EditView extends Component {
           </label>
           <label>
             Category
-            <select name="category" value={this.state.category} onChange={this.handleChange}>
-              {Object.keys(this.state.categories).map(id => {
+            <select name="category" value={state.category} onChange={handleChange}>
+              {Object.keys(categories).map(id => {
                   return (
-                    <option key={id} value={id}>{this.state.categories[id]}</option>
+                    <option key={id} value={id}>{categories[id]}</option>
                   )
                 })}
             </select>
@@ -135,6 +127,6 @@ class EditView extends Component {
       </div>
     );
   }
-}
+
 
 export default EditView;
