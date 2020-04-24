@@ -16,20 +16,20 @@ function FormView() {
     difficulty: 1,
     category: 1
   })
-
   useEffect(() => {
-    fetch("https://trivbackend.herokuapp.com/categories")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setCategories(result.categories);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    $.ajax({
+      url: `https://trivbackend.herokuapp.com/categories`,
+      type: "GET",
+      success: (result) => {
+        setIsLoaded(true);
+        setCategories(result.categories);
+        return;
+      },
+      error: (error) => {
+        alert('Unable to load categories. Please try your request again')
+        return;
+      }
+    })
   }, [])
 
   const submitQuestion = (event) => {
@@ -64,12 +64,8 @@ function FormView() {
         [name] : value
     }))
   }
-  
-  if (error) {
-    alert('Unable to load categories. Please try your request again');
-    return;
-  }
-  else if (!isLoaded) {
+
+  if (!isLoaded) {
     return <div>Loading...</div>;
   }
   else {
