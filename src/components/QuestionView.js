@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 
 import '../stylesheets/App.css';
 import Question from './Question';
@@ -6,32 +6,26 @@ import Search from './Search';
 import $ from 'jquery';
 import EditView from './EditView';
 
-class QuestionView extends Component {
-  constructor(){
-    super();
-    this.state = {
-      questions: [],
-      page: 1,
-      totalQuestions: 0,
-      categories: {},
-      currentCategory: null,
-    }
-  }
+function navTo(uri, id){
+  window.location.href = window.location.origin + uri + '/' + id;
+}
 
-  navTo(uri, id){
-    window.location.href = window.location.origin + uri + '/' + id;
-  }
+function QuestionView() {
 
-  componentDidMount() {
-    this.getQuestions();
-  }
+  const [state , setState] = useState({
+    questions : [],
+    page : 1,
+    totalQuestions: 0,
+    categories: {},
+    currentCategory: null,
+  })
 
-  getQuestions = () => {
+  function getQuestions(){
     $.ajax({
-      url: `https://trivbackend.herokuapp.com/questions?page=${this.state.page}`,
+      url: `https://trivbackend.herokuapp.com/questions?page=${state.page}`,
       type: "GET",
       success: (result) => {
-        this.setState({
+        setState({
           questions: result.questions,
           totalQuestions: result.total_questions,
           categories: result.categories,
@@ -45,30 +39,39 @@ class QuestionView extends Component {
     })
   }
 
-  selectPage(num) {
-    this.setState({page: num}, () => this.getQuestions());
+  useEffect(() => {
+    getQuestions();
+  }, [])
+
+  
+
+  function selectPage(num) {
+    setState( prevState => ({
+      ...prevState,
+      page : num
+  }))
   }
 
-  createPagination(){
+  function createPagination(){
     let pageNumbers = [];
-    let maxPage = Math.ceil(this.state.totalQuestions / 10)
+    let maxPage = Math.ceil(state.totalQuestions / 10)
     for (let i = 1; i <= maxPage; i++) {
       pageNumbers.push(
         <span
           key={i}
-          className={`page-num ${i === this.state.page ? 'active' : ''}`}
-          onClick={() => {this.selectPage(i)}}>{i}
+          className={`page-num ${i === state.page ? 'active' : ''}`}
+          onClick={() => {selectPage(i)}}>{i}
         </span>)
     }
     return pageNumbers;
   }
 
-  getByCategory= (id) => {
+  const getByCategory = (id) => {
     $.ajax({
       url: `https://trivbackend.herokuapp.com/categories/${id}/questions`,
       type: "GET",
       success: (result) => {
-        this.setState({
+        setState({
           questions: result.questions,
           totalQuestions: result.total_questions,
           currentCategory: result.current_category })
@@ -81,7 +84,7 @@ class QuestionView extends Component {
     })
   }
 
-  submitSearch = (searchTerm) => {
+  const submitSearch = (searchTerm) => {
     $.ajax({
       url: `https://trivbackend.herokuapp.com/questions`,
       type: "POST",
@@ -93,7 +96,7 @@ class QuestionView extends Component {
       },
       crossDomain: true,
       success: (result) => {
-        this.setState({
+        setState({
           questions: result.questions,
           totalQuestions: result.total_questions,
           currentCategory: result.current_category })
@@ -106,14 +109,14 @@ class QuestionView extends Component {
     })
   }
 
-  questionAction = (id) => (action) => {
+  const questionAction = (id) => (action) => {
     if(action === 'DELETE') {
       if(window.confirm('are you sure you want to delete the question?')) {
         $.ajax({
           url: `https://trivbackend.herokuapp.com/questions/${id}`,
           type: "DELETE",
           success: (result) => {
-            this.getQuestions();
+            getQuestions();
           },
           error: (error) => {
             alert('Unable to load questions. Please try your request again')
@@ -123,45 +126,43 @@ class QuestionView extends Component {
       }
     }
     else if(action === 'EDIT'){
-      this.navTo('/edit', id)
+      navTo('/edit', id)
     }
   }
 
-  render() {
-    return (
-      <div className="question-view">
-        <div className="categories-list">
-          <h2 onClick={() => {this.getQuestions()}}>Categories</h2>
-          <ul>
-            {Object.keys(this.state.categories).map((id, ) => (
-              <li key={id} onClick={() => {this.getByCategory(id)}}>
-                {this.state.categories[id]}
-                <img className="category" src={`${this.state.categories[id].toLowerCase()}.svg`} width="20" height="20"/>
-              </li>
-            ))}
-          </ul>
-          <Search submitSearch={this.submitSearch}/>
-        </div>
-        <div className="questions-list">
-          <h2>Questions</h2>
-          {this.state.questions.map((q, ind) => (
-            <Question
-              key={q.id}
-              question={q.question}
-              answer={q.answer}
-              category={this.state.categories[q.category]} 
-              difficulty={q.difficulty}
-              questionAction={this.questionAction(q.id)}
-            />
+  return (
+    <div className="question-view">
+      <div className="categories-list">
+        <h2 onClick={() => {getQuestions()}}>Categories</h2>
+        <ul>
+          {Object.keys(state.categories).map((id, ) => (
+            <li key={id} onClick={() => {getByCategory(id)}}>
+              {state.categories[id]}
+              <img className="category" src={`${state.categories[id].toLowerCase()}.svg`} width="20" height="20"/>
+            </li>
           ))}
-          <div className="pagination-menu">
-            {this.createPagination()}
-          </div>
-        </div>
-
+        </ul>
+        <Search submitSearch={submitSearch}/>
       </div>
-    );
-  }
+      <div className="questions-list">
+        <h2>Questions</h2>
+        {state.questions.map((q, ind) => (
+          <Question
+            key={q.id}
+            question={q.question}
+            answer={q.answer}
+            category={state.categories[q.category]} 
+            difficulty={q.difficulty}
+            questionAction={questionAction(q.id)}
+          />
+        ))}
+        <div className="pagination-menu">
+          {createPagination()}
+        </div>
+      </div>
+
+    </div>
+  );
 }
 
 export default QuestionView;
