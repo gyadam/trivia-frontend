@@ -19,10 +19,10 @@ function QuestionView() {
 
   const { getTokenSilently } = useAuth0();
 
-  async function getQuestions(){
+  async function getQuestions(page){
     const token = await getTokenSilently();
     $.ajax({
-      url: `https://trivbackend.herokuapp.com/questions?page=${state.page}`,
+      url: `https://trivbackend.herokuapp.com/questions?page=${page}`,
       type: "GET",
       headers: {"Authorization" : `Bearer ${token}`},
       success: (result) => {
@@ -43,15 +43,8 @@ function QuestionView() {
   }
 
   useEffect(() => {
-    getQuestions();
-  }, [])
-
-  function selectPage(num) {
-    setState( prevState => ({
-      ...prevState,
-      page : num
-  }))
-  }
+    getQuestions(state.page);
+  }, [state.page])
 
   function createPagination(){
     let pageNumbers = [];
@@ -61,7 +54,9 @@ function QuestionView() {
         <span
           key={i}
           className={`page-num ${i === state.page ? 'active' : ''}`}
-          onClick={() => {selectPage(i)}}>{i}
+          onClick={() => setState(
+            prevState => ({...prevState, page : i,})
+          )}>{i}
         </span>)
     }
     return pageNumbers;
