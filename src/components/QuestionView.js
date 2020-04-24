@@ -5,6 +5,7 @@ import Question from './Question';
 import Search from './Search';
 import $ from 'jquery';
 import EditView from './EditView';
+import { useAuth0 } from "../react-auth0-spa";
 
 function navTo(uri, id){
   window.location.href = window.location.origin + uri + '/' + id;
@@ -20,16 +21,22 @@ function QuestionView() {
     currentCategory: null,
   })
 
-  function getQuestions(){
+  const { getTokenSilently } = useAuth0();
+
+  async function getQuestions(){
+    const token = await getTokenSilently();
     $.ajax({
       url: `https://trivbackend.herokuapp.com/questions?page=${state.page}`,
       type: "GET",
+      headers: {"Authorization" : `Bearer ${token}`},
       success: (result) => {
-        setState({
+        setState( prevState => ({
+          ...prevState,
           questions: result.questions,
-          totalQuestions: result.total_questions,
+          totalQuestions: result.totalQuestions,
           categories: result.categories,
-          currentCategory: result.current_category })
+          currentCategory: result.currentCategory
+        }))
         return;
       },
       error: (error) => {
@@ -66,15 +73,19 @@ function QuestionView() {
     return pageNumbers;
   }
 
-  const getByCategory = (id) => {
+  async function getByCategory(id){
+    const token = await getTokenSilently();
     $.ajax({
       url: `https://trivbackend.herokuapp.com/categories/${id}/questions`,
       type: "GET",
+      headers: {"Authorization" : `Bearer ${token}`},
       success: (result) => {
-        setState({
+        setState( prevState => ({
+          ...prevState,
           questions: result.questions,
-          totalQuestions: result.total_questions,
-          currentCategory: result.current_category })
+          totalQuestions: result.totalQuestions,
+          currentCategory: result.currentCategory
+        }))
         return;
       },
       error: (error) => {
@@ -84,10 +95,12 @@ function QuestionView() {
     })
   }
 
-  const submitSearch = (searchTerm) => {
+  async function submitSearch(searchTerm){
+    const token = await getTokenSilently();
     $.ajax({
       url: `https://trivbackend.herokuapp.com/questions`,
       type: "POST",
+      headers: {"Authorization" : `Bearer ${token}`},
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({searchTerm: searchTerm}),
@@ -96,11 +109,12 @@ function QuestionView() {
       },
       crossDomain: true,
       success: (result) => {
-        setState({
+        setState( prevState => ({
+          ...prevState,
           questions: result.questions,
-          totalQuestions: result.total_questions,
-          currentCategory: result.current_category })
-        return;
+          totalQuestions: result.totalQuestions,
+          currentCategory: result.currentCategory
+        }))
       },
       error: (error) => {
         alert('Unable to load questions. Please try your request again')
@@ -109,26 +123,31 @@ function QuestionView() {
     })
   }
 
-  const questionAction = (id) => (action) => {
-    if(action === 'DELETE') {
-      if(window.confirm('are you sure you want to delete the question?')) {
-        $.ajax({
-          url: `https://trivbackend.herokuapp.com/questions/${id}`,
-          type: "DELETE",
-          success: (result) => {
-            getQuestions();
-          },
-          error: (error) => {
-            alert('Unable to load questions. Please try your request again')
-            return;
-          }
-        })
+  const questionAction = function(id){
+    return async function (action) {
+      const token = await getTokenSilently();
+      if(action === 'DELETE') {
+        if(window.confirm('are you sure you want to delete the question?')) {
+          $.ajax({
+            url: `https://trivbackend.herokuapp.com/questions/${id}`,
+            type: "DELETE",
+            headers: {"Authorization" : `Bearer ${token}`},
+            success: (result) => {
+              getQuestions();
+            },
+            error: (error) => {
+              alert('Unable to load questions. Please try your request again')
+              return;
+            }
+          })
+        }
+      }
+      else if(action === 'EDIT'){
+        navTo('/edit', id)
       }
     }
-    else if(action === 'EDIT'){
-      navTo('/edit', id)
-    }
-  }
+  } 
+
 
   return (
     <div className="question-view">

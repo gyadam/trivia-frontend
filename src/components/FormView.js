@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import $ from 'jquery';
+import { useAuth0 } from "../react-auth0-spa";
 
 import '../stylesheets/FormView.css';
 
@@ -10,12 +11,15 @@ function FormView() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
 
+  const { getTokenSilently } = useAuth0();
+
   const [state , setState] = useState({
     question : "",
     answer : "",
     difficulty: 1,
     category: 1
   })
+
   useEffect(() => {
     $.ajax({
       url: `https://trivbackend.herokuapp.com/categories`,
@@ -32,15 +36,20 @@ function FormView() {
     })
   }, [])
 
-  const submitQuestion = (event) => {
+  async function submitQuestion(event){
     event.preventDefault();
+    const token = await getTokenSilently();
     $.ajax({
       url: 'https://trivbackend.herokuapp.com/questions',
       type: "POST",
+      headers: {"Authorization" : `Bearer ${token}`},
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({
-        state
+        question: state.question,
+        answer: state.answer,
+        difficulty: state.difficulty,
+        category: state.category
       }),
       xhrFields: {
         withCredentials: false

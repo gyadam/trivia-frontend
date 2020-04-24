@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import $ from 'jquery';
+import { useAuth0 } from "../react-auth0-spa";
 
 import '../stylesheets/EditView.css';
 
@@ -13,12 +14,37 @@ function EditView(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
 
+  const { getTokenSilently } = useAuth0();
+
   const [state , setState] = useState({
     question : "",
     answer : "",
     difficulty: 1,
     category: 1
   })
+
+
+  async function getQuestion(){
+    const token = await getTokenSilently();
+    $.ajax({
+      url: `https://trivbackend.herokuapp.com/questions/${props.match.params.id}`,
+      type: "GET",
+      headers: {"Authorization" : `Bearer ${token}`},
+      success: (result) => {
+        setState({
+          question: result.question.question,
+          answer: result.question.answer,
+          difficulty: result.question.difficulty,
+          category: result.question.category
+        });
+        return;
+      },
+      error: (error) => {
+        alert('Unable to load question. Please try your request again')
+        return;
+      }
+    })
+  }
 
   useEffect(() => {
     $.ajax({
@@ -34,31 +60,18 @@ function EditView(props) {
         return;
       }
     });
-    $.ajax({
-      url: `https://trivbackend.herokuapp.com/questions/${props.match.params.id}`,
-      type: "GET",
-      success: (result) => {
-        setState({
-          question: result.question.question,
-          answer: result.question.answer,
-          difficulty: result.question.difficulty,
-          category: result.question.category
-        });
-        return;
-      },
-      error: (error) => {
-        alert('Unable to load question. Please try your request again')
-        return;
-      }
-    })
+    getQuestion();
+    
 
   }, [])
 
-  const editQuestion = (event) => {
+  async function editQuestion(event){
     event.preventDefault();
+    const token = await getTokenSilently();
     $.ajax({
       url: `https://trivbackend.herokuapp.com/questions/${props.match.params.id}`,
       type: "PATCH",
+      headers: {"Authorization" : `Bearer ${token}`},
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({

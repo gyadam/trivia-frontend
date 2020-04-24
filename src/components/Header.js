@@ -10,6 +10,7 @@ const Header = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
+    // TODO: reset authentication
 
     <div className="App-header">
 

@@ -1,4 +1,5 @@
 {
     "domain": "udacitytrivia.auth0.com",
-    "clientId": "bRHSW0B3Q7f136M3tSgJ96yAJnDHhE7G"
+    "clientId": "bRHSW0B3Q7f136M3tSgJ96yAJnDHhE7G",
+    "audience": "trivia"
 }
