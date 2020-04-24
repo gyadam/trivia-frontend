@@ -14,7 +14,6 @@ const onRedirectCallback = appState => {
         : window.location.pathname
     );
   };
-console.log("rendering reactDOM");
 
 ReactDOM.render(
     <Auth0Provider
@@ -27,7 +26,6 @@ ReactDOM.render(
         <App />
     </Auth0Provider>,
     document.getElementById('root'));
-console.log("rendered reactDOM");
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

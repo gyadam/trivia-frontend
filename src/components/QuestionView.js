@@ -1,15 +1,11 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import '../stylesheets/App.css';
 import Question from './Question';
 import Search from './Search';
 import $ from 'jquery';
-import EditView from './EditView';
 import { useAuth0 } from "../react-auth0-spa";
 
-function navTo(uri, id){
-  window.location.href = window.location.origin + uri + '/' + id;
-}
 
 function QuestionView() {
 
@@ -49,8 +45,6 @@ function QuestionView() {
   useEffect(() => {
     getQuestions();
   }, [])
-
-  
 
   function selectPage(num) {
     setState( prevState => ({
@@ -123,6 +117,10 @@ function QuestionView() {
     })
   }
 
+  function navTo(uri, id){
+    window.location.href = window.location.origin + uri + '/' + id;
+  }
+
   const questionAction = function(id){
     return async function (action) {
       const token = await getTokenSilently();
@@ -136,7 +134,7 @@ function QuestionView() {
               getQuestions();
             },
             error: (error) => {
-              alert('Unable to load questions. Please try your request again')
+              alert('Unable to delete question. Please try your request again')
               return;
             }
           })
@@ -147,7 +145,6 @@ function QuestionView() {
       }
     }
   } 
-
 
   return (
     <div className="question-view">

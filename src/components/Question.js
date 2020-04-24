@@ -1,11 +1,11 @@
-import React, { Component, useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import '../stylesheets/Question.css';
 
 function Question(props) {
   
   const [isVisible, setVisibility] = useState(false);
-
   const { question, answer, category, difficulty } = props;
+
   return (
     <div className="Question-holder">
       <div className="Question">{question}</div>

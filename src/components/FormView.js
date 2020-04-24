@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import { useAuth0 } from "../react-auth0-spa";
 
@@ -116,6 +116,5 @@ function FormView() {
     );
   }
 }
-
 
 export default FormView;

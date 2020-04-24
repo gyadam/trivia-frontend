@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +21,6 @@ function App() {
 
   const { loading } = useAuth0();
   if (loading) {
-    console.log("waiting for auth...")
     return <div>Loading...</div>;
   }
 
@@ -32,12 +31,11 @@ function App() {
           <Header />
         </header>
         <Switch>
-          {/* TODO: reset back to privateroute */}
           <Route path="/" exact component={QuizView} />
-          <Route path="/list" exact component={QuestionView} />
-          <Route path="/add" component={FormView} />
-          <Route path="/edit/:id" component={EditView} />
-          <Route component={QuestionView} />
+          <PrivateRoute path="/list" exact component={QuestionView} />
+          <PrivateRoute path="/add" component={FormView} />
+          <PrivateRoute path="/edit/:id" component={EditView} />
+          <PrivateRoute component={QuestionView} />
         </Switch>
       </Router>
     </div>
