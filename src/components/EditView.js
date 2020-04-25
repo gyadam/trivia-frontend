@@ -86,7 +86,7 @@ function EditView(props) {
       },
       crossDomain: true,
       success: (result) => {
-        navTo('/');
+        navTo('/list');
         return;
       },
       error: (error) => {
