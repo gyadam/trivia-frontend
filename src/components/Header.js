@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <div className="App-header">
       <h1>
-        <Link id="home" to="/">Udacitrivia</Link>
+        <Link id="home" to="/">BrainOverFlow</Link>
       </h1>
       {isAuthenticated && (
         <h2>
