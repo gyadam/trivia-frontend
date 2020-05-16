@@ -12,6 +12,7 @@ import QuestionView from './components/QuestionView';
 import Header from './components/Header';
 import QuizView from './components/QuizView';
 import EditView from './components/EditView';
+import About from './components/About';
 
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
@@ -32,6 +33,7 @@ function App() {
         </header>
         <Switch>
           <Route path="/" exact component={QuizView} />
+          <Route path="/about" exact component={About} />
           <PrivateRoute path="/list" exact component={QuestionView} />
           <PrivateRoute path="/add" component={FormView} />
           <PrivateRoute path="/edit/:id" component={EditView} />

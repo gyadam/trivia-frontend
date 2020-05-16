@@ -1,0 +1,17 @@
+.info-header{
+    width: 60%;
+    margin-left: 10%;
+    padding-top: 120px;
+    text-align: left;
+    font-size: 30px;
+}
+
+.info-text{
+    font-size: medium;
+}
+
+.info-text li{
+    text-align: left;
+    list-style-type: disc;
+    margin-left: 25px;
+}
