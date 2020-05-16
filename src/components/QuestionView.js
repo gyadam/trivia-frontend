@@ -146,10 +146,11 @@ function QuestionView() {
       <div className="categories-list">
         <h2 onClick={() => {getQuestions()}}>Categories</h2>
         <ul>
+          <li onClick={() => {getQuestions()}}>All</li>
           {Object.keys(state.categories).map((id, ) => (
             <li key={id} onClick={() => {getByCategory(id)}}>
               {state.categories[id]}
-              <img className="category" src={`${state.categories[id].toLowerCase()}.svg`} width="20" height="20"/>
+              {/* <img className="category" src={`${state.categories[id].toLowerCase()}.svg`} width="20" height="20"/> */}
             </li>
           ))}
         </ul>
