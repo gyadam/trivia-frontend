@@ -14,6 +14,8 @@ class QuizView extends Component {
         showAnswer: false,
         categories: {},
         numCorrect: 0,
+        numIncorrect: 0,
+        numQuestions: 0,
         currentQuestion: {},
         guess: '',
         forceEnd: false
@@ -83,6 +85,8 @@ class QuizView extends Component {
     let evaluate =  this.evaluateAnswer()
     this.setState({
       numCorrect: !evaluate ? this.state.numCorrect : this.state.numCorrect + 1,
+      numIncorrect: evaluate ? this.state.numIncorrect : this.state.numIncorrect + 1,
+      numQuestions: this.state.numQuestions + 1,
       showAnswer: true,
     })
   }
@@ -124,7 +128,9 @@ class QuizView extends Component {
   renderFinalScore(){
     return(
       <div className="quiz-play-holder">
-        <div className="final-header"> Your Final Score is {this.state.numCorrect}</div>
+        <div className="final-header">Final Score: {this.state.numCorrect}</div>
+        <div className="correct">Correct answers: {this.state.numCorrect}</div>
+        <div className="wrong">Incorrect answers: {this.state.numIncorrect}</div>
         <div className="play-again button" onClick={this.restartGame}> Play Again? </div>
       </div>
     )
@@ -142,7 +148,7 @@ class QuizView extends Component {
     return(
       <div className="quiz-play-holder">
         <div className="quiz-question">{this.state.currentQuestion.question}</div>
-        <div className={`${evaluate ? 'correct' : 'wrong'}`}>{evaluate ? "You were correct!" : "You were incorrect"}</div>
+        <div className={`${evaluate ? 'correct' : 'wrong'}`}>{evaluate ? "Correct answer!" : "Incorrect answer!"}</div>
         <div className="quiz-answer">{this.state.currentQuestion.answer}</div>
         <div className="next-question button" onClick={this.getNextQuestion}> Next Question </div>
       </div>
