@@ -11,7 +11,7 @@ const Header = () => {
     <header>
     <h1 class="logo">
       <a href="/">
-      <img id="logoimg" src="brainlogo.png" position="relative"></img>
+      <img id="logoimg" src={process.env.PUBLIC_URL + "/brainlogo.png"} position="relative"></img>
       </a>
     </h1>
     <input type="checkbox" id="nav-toggle" class="nav-toggle"></input>
