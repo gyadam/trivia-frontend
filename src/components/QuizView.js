@@ -12,7 +12,7 @@ class QuizView extends Component {
         quizCategory: null,
         previousQuestions: [], 
         showAnswer: false,
-        categories: {},
+        categories: {1: "Science", 2: "Art", 3: "Geography", 4: "History", 5: "Entertainment", 6: "Sports"},
         numCorrect: 0,
         numIncorrect: 0,
         numQuestions: 0,
@@ -20,21 +20,6 @@ class QuizView extends Component {
         guess: '',
         forceEnd: false
     }
-  }
-
-  componentDidMount(){
-    $.ajax({
-      url: `https://trivbackend.herokuapp.com/categories`,
-      type: "GET",
-      success: (result) => {
-        this.setState({ categories: result.categories })
-        return;
-      },
-      error: (error) => {
-        alert('Unable to load categories. Please try your request again')
-        return;
-      }
-    })
   }
 
   selectCategory = ({type, id=0}) => {
