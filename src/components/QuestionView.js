@@ -81,11 +81,9 @@ function QuestionView() {
   }
 
   async function submitSearch(searchTerm){
-    const token = await getTokenSilently();
     $.ajax({
       url: `https://trivbackend.herokuapp.com/questions`,
       type: "POST",
-      headers: {"Authorization" : `Bearer ${token}`},
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify({searchTerm: searchTerm}),
