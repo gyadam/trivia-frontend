@@ -15,3 +15,8 @@
     list-style-type: disc;
     margin-left: 25px;
 }
+
+.info-text a{
+    text-decoration: none;
+    color: rgb(22, 94, 161);
+}

@@ -7,7 +7,7 @@ const About = () => {
             About QuizOverflow
             <div className="info-text">
                 <p>
-                  This website was created for the Full Stack Developer Nanodegree at <a href="https://udacity.com">Udacity</a>.
+                  This website was created for the  <a href="https://udacity.com">Full Stack Developer Nanodegree at Udacity</a>.
                 </p>
                 <p>
                   Both the frontend and the backend are hosted on Heroku, and their source code is available on <a href="https://github.com/gyadam/quizoverflow">GitHub</a>.
