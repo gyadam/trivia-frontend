@@ -16,13 +16,14 @@
 .questions-list {
   flex-basis: 80%;
   text-align: center;
-  padding-right: 100px;
+  padding-top: 80px;
+  padding-right: 120px;
 }
 
 .Question-holder {
-  padding: 10px 20px;
-  border: 2px black solid;
-  text-align: left;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  border-top: 1px grey solid;
   margin: 7px;
 }
 
@@ -31,6 +32,7 @@
   flex-direction: row;
   height: 30px;
   width: 200px;
+  margin-left: calc(50% - 100px);
   align-items: center;
   justify-content: space-between;
 }
@@ -38,34 +40,37 @@
 .Question {
   font-size: 21px;
   width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .answer-holder {
   font-size: 25px;
   height: 25px;
-  margin: 5px 0px;
+  margin: 10px 0px;
 }
 
 .show-answer {
   width: 100px;
   margin-top: 5px;
-  background-color: dodgerblue;
   color: white;
   padding: 3px 5px;
-  margin-left: 0px !important;
+  text-align: center;
 }
 
 span.page-num {
   margin: 5px;
   padding-bottom: 50px;
-  /* color: blue; */
+  color: rgb(22, 94, 161);
   font-weight: bolder;
   text-decoration: underline;
   font-size: 16px;
+  cursor: pointer;
 }
 
 span.page-num.active {
-  color: blue;
+  color:  black;
+  text-decoration: none;
 }
 
 img.category {
@@ -74,8 +79,10 @@ img.category {
 
 img.delete {
   width: 20px;
+  cursor: pointer;
 }
 
 img.edit {
   width: 15px;
+  cursor: pointer;
 }

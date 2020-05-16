@@ -1,34 +1,4 @@
-.App-header {
-  background-color: #222;
-  color: white;
-  text-decoration: none;
-  display: flex;
-  justify-content: space-between;
-  height: 75px;
-  padding: 20px;
-  padding-right: 40%;
-  padding-left: 5%;
-}
-
-.App-header > h1 {
-  color: dodgerblue !important;
-
-}
-
-#home {
-  color: dodgerblue !important;
-  text-decoration: none !important;
-}
-
-#add {
-  color: white !important;
-  text-decoration: none !important;
-}
-
-#list {
-  color: white !important;
-  text-decoration: none !important;
-}
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:500');
 
 .App-intro {
   font-size: large;
@@ -54,4 +24,28 @@ form {
   flex-direction: column;
   width: 80%;
   margin: auto;
+}
+
+body {
+	margin: 0;
+  background-image: url("knots.png");
+  background-size: 100%;
+	font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  color: rgb(46, 46, 46);
+}
+
+.button {
+  font-family: 'Work Sans', sans-serif;
+}
+
+.categories-list li{
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.categories-list li:hover {
+  color:  rgb(22, 94, 161);
 }

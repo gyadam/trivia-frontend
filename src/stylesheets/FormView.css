@@ -1,7 +1,12 @@
-.form-view > label {
-  padding: 0px 0px 10px;
+.form-view > label > input {
+  margin: 0px 10px 0px;
+}
+
+.form-view > label > select {
+  margin: 0px 10px 0px;
 }
 
 #add-form {
   text-align: center;
+  padding-top: 100px;
 }
