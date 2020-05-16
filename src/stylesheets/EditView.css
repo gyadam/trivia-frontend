@@ -1,7 +1,12 @@
-.form-view > label {
-  padding: 0px 0px 10px;
+.form-view > label > input {
+  margin: 5px;
+}
+
+.form-view > label > select {
+  margin: 5px;
 }
 
 #edit-form {
   text-align: center;
+  padding-top: 100px;
 }

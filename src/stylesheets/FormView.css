@@ -1,9 +1,9 @@
 .form-view > label > input {
-  margin: 0px 10px 0px;
+  margin: 5px;
 }
 
 .form-view > label > select {
-  margin: 0px 10px 0px;
+  margin: 5px;
 }
 
 #add-form {
