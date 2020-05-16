@@ -34,7 +34,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={QuizView} />
           <Route path="/about" exact component={About} />
-          <PrivateRoute path="/list" exact component={QuestionView} />
+          <Route path="/list" exact component={QuestionView} />
           <PrivateRoute path="/add" component={FormView} />
           <PrivateRoute path="/edit/:id" component={EditView} />
           <PrivateRoute component={QuestionView} />

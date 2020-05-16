@@ -77,12 +77,46 @@ img.category {
   width: 30px;
 }
 
-img.delete {
+.delete img {
   width: 20px;
   cursor: pointer;
 }
 
-img.edit {
+.edit img{
   width: 15px;
   cursor: pointer;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  margin-top: 2px;
+  margin-left: 3px;
+  padding: 0px 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.nodelete img {
+  width: 20px;
+  opacity: 0.3;
+}
+
+.noedit img{
+  width: 15px;
+  opacity: 0.3;
+}
+
+
+.nodelete:hover .tooltiptext {
+  visibility: visible;
+}
+
+.noedit:hover .tooltiptext {
+  visibility: visible;
 }

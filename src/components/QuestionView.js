@@ -20,11 +20,9 @@ function QuestionView() {
   const { getTokenSilently } = useAuth0();
 
   async function getQuestions(page){
-    const token = await getTokenSilently();
     $.ajax({
       url: `https://trivbackend.herokuapp.com/questions?page=${page}`,
       type: "GET",
-      headers: {"Authorization" : `Bearer ${token}`},
       success: (result) => {
         setState( prevState => ({
           ...prevState,
@@ -63,11 +61,9 @@ function QuestionView() {
   }
 
   async function getByCategory(id){
-    const token = await getTokenSilently();
     $.ajax({
       url: `https://trivbackend.herokuapp.com/categories/${id}/questions`,
       type: "GET",
-      headers: {"Authorization" : `Bearer ${token}`},
       success: (result) => {
         setState( prevState => ({
           ...prevState,
