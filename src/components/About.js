@@ -13,7 +13,7 @@ const About = () => {
                   Both the frontend and the backend are hosted on Heroku, and their source code is available on <a href="https://github.com/gyadam/quizoverflow">GitHub</a>.
                 </p>
                 <p>
-                  Although it's a pretty simple website, I learned a lot while building it and really enjoyed the process, as I had no prior experience in web development at all.
+                  Although a very simple website, I learned a lot while building it and really enjoyed the process, as I had no prior experience in web development at all.
                 </p>
                 <p>
                   The goal of the project was to:
