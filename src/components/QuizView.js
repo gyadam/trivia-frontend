@@ -135,7 +135,9 @@ class QuizView extends Component {
         <div className="quiz-question">{this.state.currentQuestion.question}</div>
         <div className={`${evaluate ? 'correct' : 'wrong'}`}>{evaluate ? "Correct answer!" : "Incorrect answer!"}</div>
         <div className="quiz-answer">{this.state.currentQuestion.answer}</div>
-        <div className="next-question button" onClick={this.getNextQuestion}> Next Question </div>
+        <div className="next-question button" onClick={this.getNextQuestion}>
+        {this.state.previousQuestions.length === questionsPerPlay - 1 ? "View Results" : "Next Question"}
+          </div>
       </div>
     )
   }
