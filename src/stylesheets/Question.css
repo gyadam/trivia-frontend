@@ -17,7 +17,7 @@
   flex-basis: 80%;
   text-align: center;
   padding-top: 80px;
-  padding-right: 120px;
+  padding-right: 10%;
 }
 
 .Question-holder {
@@ -119,4 +119,30 @@ img.category {
 
 .noedit:hover .tooltiptext {
   visibility: visible;
+}
+
+@media screen and (max-width: 900px) {
+    
+  .categories-list {
+    flex-basis: 20%;
+    flex-shrink: 2;
+    padding-top: 100px;
+  }
+  
+  .categories-list > h2 {
+    font-size: 1em;
+  }
+
+  .categories-list > ul {
+    font-size: 12px;
+  }
+
+  .categories-list input {
+    font-size: 10px;
+  }
+
+  .categories-list .button {
+    width: 60px;
+  }
+
 }
