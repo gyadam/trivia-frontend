@@ -16,7 +16,7 @@
 #logoimg{
   margin-top: 8px;
   position: relative;
-  width: 300px;
+  width: 250px;
   overflow: hidden;
 }
 
@@ -138,7 +138,7 @@ nav a:hover {
   #logoimg{
     margin-top: 8px;
     position: relative;
-    width: 250;
+    width: 300px;
     overflow: hidden;
   }
   
