@@ -134,6 +134,13 @@ nav a:hover {
   .logo {
     grid-column: 2 / 3;
   }
+
+  #logoimg{
+    margin-top: 8px;
+    position: relative;
+    width: 250;
+    overflow: hidden;
+  }
   
   nav {
     /* Edge support */
