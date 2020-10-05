@@ -1,13 +1,27 @@
 .info-header{
     width: 70%;
-    margin-left: 10%;
-    padding-top: 90px;
+    margin-left: 15%;
+    padding-top: 100px;
     text-align: left;
     font-size: 30px;
 }
 
+.info-title{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .info-text{
+    text-align: center;
     font-size: medium;
+    line-height: 1.5;
+}
+
+.info-text ul{
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .info-text li{
@@ -25,7 +39,10 @@
     
     .info-header{
         padding-top: 100px;
-        width: 80%;
+    }
+
+    .info-text ul{
+        width: 90%;
     }
 
 }
