@@ -27,23 +27,15 @@ const About = () => {
                   <p>
                   Both the frontend and the backend are hosted on Heroku, and their source code is available on <a href="https://github.com/gyadam/quizoverflow">GitHub</a>.
                 </p>
-                I used the following technologies to build the website :
-                <ul>
-                  <li><b>SQLAlchemy ORM</b> as the ORM library</li>
-                  <li><b>PostgreSQL</b> for the database</li>
-                  <li><b>Python3</b> and <b>Flask</b> as the backend language and framework</li>
-                  <li><b>React</b>, <b>Javascript</b>, <b>HTML</b> and <b>CSS</b> for the frontend</li>
-                </ul>
-                  
-                
-                
-               
-                
-                
-                  
-                </p>
-            
-        </div>
+                  I used the following technologies to build the website :
+                  <ul>
+                    <li><b>SQLAlchemy ORM</b> as the ORM library</li>
+                    <li><b>PostgreSQL</b> for the database</li>
+                    <li><b>Python3</b> and <b>Flask</b> as the backend language and framework</li>
+                    <li><b>React</b>, <b>Javascript</b>, <b>HTML</b> and <b>CSS</b> for the frontend</li>
+                  </ul>
+                </p>   
+            </div>
         </div>
     );
 }

@@ -52,6 +52,7 @@ class QuizView extends Component {
           showAnswer: false,
           previousQuestions: previousQuestions,
           currentQuestion: result.question,
+          numQuestions: this.state.numQuestions + 1,
           guess: '',
           forceEnd: result.question ? false : true
         })
@@ -71,7 +72,6 @@ class QuizView extends Component {
     this.setState({
       numCorrect: !evaluate ? this.state.numCorrect : this.state.numCorrect + 1,
       numIncorrect: evaluate ? this.state.numIncorrect : this.state.numIncorrect + 1,
-      numQuestions: this.state.numQuestions + 1,
       showAnswer: true,
     })
   }
@@ -94,7 +94,7 @@ class QuizView extends Component {
               <div className="choose-header">Welcome to QuizOverflow!</div>
               <div className="select-category">What topic would you like to test yourself in?</div>
               <div className="category-holder">
-                <div className="play-category" key={0} value={0} onClick={() => this.selectCategory({type:this.state.categories[0]})}>
+                <div className="play-category" key={0} value={0} onClick={() => this.selectCategory({type:"General"})}>
                   General (all topics)
                 </div>
                   {Object.keys(this.state.categories).map(id => {
@@ -135,6 +135,9 @@ class QuizView extends Component {
     let evaluate =  this.evaluateAnswer()
     return(
       <div className="quiz-play-holder">
+        <div className="question-header">
+          <div><b>Category:</b> {this.state.quizCategory.type} (question {this.state.numQuestions} of {questionsPerPlay})</div>
+        </div>
         <div className="quiz-question">{this.state.currentQuestion.question}</div>
         <div className={`${evaluate ? 'correct' : 'wrong'}`}>{evaluate ? "Correct answer!" : "Incorrect answer!"}</div>
         <div className="quiz-answer">{this.state.currentQuestion.answer}</div>
@@ -146,13 +149,16 @@ class QuizView extends Component {
   }
 
   renderPlay(){
+    console.log(this.state);
     return this.state.previousQuestions.length === questionsPerPlay || this.state.forceEnd
       ? this.renderFinalScore()
       : this.state.showAnswer 
         ? this.renderCorrectAnswer()
         : (
           <div className="quiz-play-holder">
-            {/* <div className="question-header">Category: {this.state.quizCategory} Question {this.state.numQuestions + 1} of {questionsPerPlay}</div> */}
+            <div className="question-header">
+              <div><b>Category:</b> {this.state.quizCategory.type} (question {this.state.numQuestions} of {questionsPerPlay})</div>
+            </div>
             <div className="quiz-question">{this.state.currentQuestion.question}</div>
             <form onSubmit={this.submitGuess}>
               <input type="text" name="guess" onChange={this.handleChange}/>

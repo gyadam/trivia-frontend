@@ -59,10 +59,18 @@ div.button {
     margin-left: calc(50% - 75px);
 }
 
+.question-header{
+    padding-top: 150px;
+    margin-bottom: 30px;
+}
+
+.question-header div{
+    margin: 10px;
+}
+
 .quiz-question {
     margin: 0px;
     font-size: 24px;
-    padding-top: 150px;
 }
 
 .correct {
