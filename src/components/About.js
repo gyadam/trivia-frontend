@@ -14,7 +14,7 @@ const About = () => {
                   Visitors can also view the list of questions, but can only view answers and edit/delete the questions if they are logged in and have the right permissions, which is controlled through with Auth0 using JSON web tokens.
                 </p>
                 <p>
-                  I used the following technologies to build the website :
+                  I used the following technologies to build the website:
                   <ul>
                     <li><b>React</b>, <b>Javascript</b>, <b>HTML</b> and <b>CSS</b> for the frontend</li>
                     <li><b>Python3</b> and <b>Flask</b> as the backend language and framework</li>
