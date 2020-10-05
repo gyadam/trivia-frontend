@@ -94,7 +94,9 @@ class QuizView extends Component {
               <div className="choose-header">Welcome to QuizOverflow!</div>
               <div className="select-category">What topic would you like to test yourself in?</div>
               <div className="category-holder">
-                <div className="play-category" onClick={this.selectCategory}>General (all topics)</div>
+                <div className="play-category" key={0} value={0} onClick={() => this.selectCategory({type:this.state.categories[0]})}>
+                  General (all topics)
+                </div>
                   {Object.keys(this.state.categories).map(id => {
                     return (
                       <div
@@ -150,6 +152,7 @@ class QuizView extends Component {
         ? this.renderCorrectAnswer()
         : (
           <div className="quiz-play-holder">
+            {/* <div className="question-header">Category: {this.state.quizCategory} Question {this.state.numQuestions + 1} of {questionsPerPlay}</div> */}
             <div className="quiz-question">{this.state.currentQuestion.question}</div>
             <form onSubmit={this.submitGuess}>
               <input type="text" name="guess" onChange={this.handleChange}/>
