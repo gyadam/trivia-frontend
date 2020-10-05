@@ -7,7 +7,11 @@ const About = () => {
             About QuizOverflow
             <div className="info-text">
                 <p>
-                  This website was created for the  <a href="https://udacity.com">Full Stack Developer Nanodegree at Udacity</a>.
+                  QuizOverflow is a personal project website where users can play quizzes in multiple categories.
+                </p>
+                <p>
+                  The website allows visitors to play categorized quizzes consisting of 5 questions in the selected category.
+                  Visitors can also view the list of questions, but can only view answers and edit/delete the questions if they are logged in and have the right permissions, which are controlled through <a href="https://auth0.com">Auth0</a>.
                 </p>
                 <p>
                   The goal of the project was to:
@@ -23,20 +27,13 @@ const About = () => {
                   <p>
                   Both the frontend and the backend are hosted on Heroku, and their source code is available on <a href="https://github.com/gyadam/quizoverflow">GitHub</a>.
                 </p>
-                <p>
-                  The website allows visitors to play categorized quizzes consisting of 5 questions in the selected category.
-                  Visitors can also view the list of questions, but can only view answers and edit/delete the questions if they are logged in and have the right permissions, which are controlled through <a href="https://auth0.com">Auth0</a>.
-                </p>
-                <p>
-                  Although a very simple website, I learned a lot while building it and really enjoyed the process, as I had no prior experience in web development at all.
-                </p>
-                  Tech Stack:
-                  <ul>
-                    <li><b>SQLAlchemy ORM</b> as the ORM library</li>
-                    <li><b>PostgreSQL</b> for the database</li>
-                    <li><b>Python3</b> and <b>Flask</b> as the server language and server framework</li>
-                    <li><b>HTML</b>, <b>CSS</b>, and <b>Javascript</b> with <b>Node.js</b> and <b>React</b> for the frontend</li>
-                  </ul>
+                I used the following technologies to build the website :
+                <ul>
+                  <li><b>SQLAlchemy ORM</b> as the ORM library</li>
+                  <li><b>PostgreSQL</b> for the database</li>
+                  <li><b>Python3</b> and <b>Flask</b> as the backend language and framework</li>
+                  <li><b>React</b>, <b>Javascript</b>, <b>HTML</b> and <b>CSS</b> for the frontend</li>
+                </ul>
                   
                 
                 
