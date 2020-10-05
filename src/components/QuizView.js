@@ -150,7 +150,6 @@ class QuizView extends Component {
         ? this.renderCorrectAnswer()
         : (
           <div className="quiz-play-holder">
-            <div className="question-header">Category: {this.state.quizCategory} Question {this.state.numQuestions + 1} of {questionsPerPlay}</div>
             <div className="quiz-question">{this.state.currentQuestion.question}</div>
             <form onSubmit={this.submitGuess}>
               <input type="text" name="guess" onChange={this.handleChange}/>
