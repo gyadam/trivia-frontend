@@ -91,12 +91,13 @@ class QuizView extends Component {
   renderPrePlay(){
       return (
           <div className="quiz-play-holder">
-              <div className="choose-header">Choose Category</div>
+              <div className="choose-header">Welcome to QuizOverflow!</div>
+              <div className="select-category">What topic would you like to test yourself in?</div>
               <div className="category-holder">
-                  <div className="play-category" onClick={this.selectCategory}>ALL</div>
+                <div className="play-category" onClick={this.selectCategory}>General (all topics)</div>
                   {Object.keys(this.state.categories).map(id => {
-                  return (
-                    <div
+                    return (
+                      <div
                       key={id}
                       value={id}
                       className="play-category"
@@ -149,6 +150,7 @@ class QuizView extends Component {
         ? this.renderCorrectAnswer()
         : (
           <div className="quiz-play-holder">
+            <div className="question-header">Category: {this.state.quizCategory} Question {this.state.numQuestions + 1} of {questionsPerPlay}</div>
             <div className="quiz-question">{this.state.currentQuestion.question}</div>
             <form onSubmit={this.submitGuess}>
               <input type="text" name="guess" onChange={this.handleChange}/>

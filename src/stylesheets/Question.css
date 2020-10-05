@@ -10,7 +10,7 @@
 }
 
 .categories-list > form {
-  width: 60%;
+  width: 150px;
 }
 
 .questions-list {
@@ -141,8 +141,12 @@ img.category {
     font-size: 10px;
   }
 
+  .categories-list form {
+    width: 100px;
+  }
+
   .categories-list .button {
-    width: 60px;
+    width: 100%;
   }
 
 }
