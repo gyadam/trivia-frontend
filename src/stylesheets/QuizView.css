@@ -91,7 +91,7 @@ div.button {
 
 input[type=text] {
     align-self: center;
-    width: 40%;
+    width: 400px;
     margin: 20px;
 }
 
@@ -107,6 +107,16 @@ input[type=text] {
 @media screen and (max-width: 900px) {
     .play-category{
         width: 300px;
+    }
+
+    .question-header{
+        font-size: small;
+    }
+
+    input[type=text] {
+        align-self: center;
+        width: 250px;
+        margin: 20px;
     }
 
 }
