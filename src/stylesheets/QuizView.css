@@ -73,6 +73,10 @@ div.button {
     font-size: 24px;
 }
 
+.quiz-answer{
+    margin: 15px;
+}
+
 .correct {
     align-self: center;
     margin: 20px;
