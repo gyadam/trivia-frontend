@@ -6,8 +6,6 @@ import '../stylesheets/EditView.css';
 
 function EditView(props) {
 
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
 
   const { getTokenSilently } = useAuth0();
@@ -24,7 +22,6 @@ function EditView(props) {
       url: `https://trivbackend.herokuapp.com/categories`,
       type: "GET",
       success: (result) => {
-        setIsLoaded(true);
         setCategories(result.categories);
         return;
       },
@@ -60,7 +57,7 @@ function EditView(props) {
   useEffect(() => {
     getCategories();
     getQuestion();
-  }, [])
+  })
 
   function navTo(uri){
     window.location.href = window.location.origin + uri;

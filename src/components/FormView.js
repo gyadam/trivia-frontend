@@ -7,7 +7,6 @@ import '../stylesheets/FormView.css';
 
 function FormView() {
 
-  const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState([]);
 

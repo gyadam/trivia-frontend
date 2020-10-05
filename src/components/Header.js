@@ -9,12 +9,12 @@ const Header = () => {
 
   return (
     <header>
-    <h1 class="logo">
+    <h1 className="logo">
       <a href="/">
-      <img id="logoimg" src={process.env.PUBLIC_URL + "/brainlogo.png"} position="relative"></img>
+      <img id="logoimg" src={process.env.PUBLIC_URL + "/brainlogo.png"} alt="Logo" position="relative"></img>
       </a>
     </h1>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle"></input>
+    <input type="checkbox" id="nav-toggle" className="nav-toggle"></input>
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
@@ -27,7 +27,7 @@ const Header = () => {
         }</li>
       </ul>
     </nav>
-    <label for="nav-toggle" class="nav-toggle-label">
+    <label htmlFor="nav-toggle" className="nav-toggle-label">
       <span></span>
     </label>
   </header>

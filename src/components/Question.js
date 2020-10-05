@@ -6,13 +6,13 @@ function Question(props) {
   
   const [isVisible, setVisibility] = useState(false);
   const { question, answer, category, difficulty } = props;
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect} = useAuth0();
 
   return (
     <div className="Question-holder">
       <div className="Question">{question}</div>
       <div className="Question-status">
-        <img className="category" src={`${category.toLowerCase()}.svg`}/>
+        <img className="category" src={`${category.toLowerCase()}.svg`} alt="Category icon"/>
         <div className="difficulty">Difficulty: {difficulty}</div>
         <div className={isAuthenticated ? "delete" : "nodelete"}
         onClick={() => {
@@ -20,7 +20,7 @@ function Question(props) {
             props.questionAction('DELETE');
           } 
         }}>
-          <img src="delete.png"/>
+          <img src="delete.png" alt="Delete icon"/>
           <span class="tooltiptext">Login to delete question</span>
         </div>
 
@@ -30,7 +30,7 @@ function Question(props) {
             props.questionAction('EDIT');
           } 
         }}>
-          <img src="edit.png"/>
+          <img src="edit.png" alt="Edit icon"/>
           <span class="tooltiptext">Login to edit question</span>
         </div>        
       </div>

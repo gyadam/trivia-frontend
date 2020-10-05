@@ -126,9 +126,9 @@ class QuizView extends Component {
   }
 
   evaluateAnswer = () => {
-    const formatGuess = this.state.guess.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").toLowerCase();
+    const formatGuess = this.state.guess.replace(/[.,/#!$%^&*;:{}=\-_`~()]/g,"").toLowerCase();
     const answerArray = this.state.currentQuestion.answer.toLowerCase().split(' ');
-    return answerArray.includes(formatGuess) || this.state.currentQuestion.answer.toLowerCase() == formatGuess;
+    return answerArray.includes(formatGuess) || this.state.currentQuestion.answer.toLowerCase() === formatGuess;
   }
 
   renderCorrectAnswer(){
