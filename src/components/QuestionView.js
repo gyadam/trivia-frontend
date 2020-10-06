@@ -82,6 +82,7 @@ function QuestionView() {
         }
       })
     }
+    document.getElementById("search-form").reset();
   }
 
   async function submitSearch(searchTerm){
@@ -107,7 +108,10 @@ function QuestionView() {
         alert('Unable to load questions. Please try your request again')
         return;
       }
-    })
+    });
+    $('#categories-dropdown option').prop('selected', function() {
+      return this.defaultSelected;
+    });
   }
 
   function navTo(uri, id){
@@ -149,7 +153,7 @@ function QuestionView() {
           <div className="categories-list">
             <label htmlFor="categories-dropdown">Category: </label>
             <select name="categories-dropdown" id="categories-dropdown" onChange={(e) => {getByCategory(e.target.value)}}>
-              <option value={0} key={0}>All</option>
+              <option value={0} key={0} selected="selected">All</option>
               {Object.keys(state.categories).map((id, ) => (
                 <option value={id} key={id}>{state.categories[id]}</option>
               ))}
