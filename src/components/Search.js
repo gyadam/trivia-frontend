@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {FaSearch} from 'react-icons/fa';
 
 class Search extends Component {
   state = {
@@ -23,8 +24,11 @@ class Search extends Component {
           placeholder="Search questions..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
+          className="search-input"
         />
-        <input type="submit" value="Submit" className="button"/>
+        <button type="submit" className="searchButton">
+          <FaSearch></FaSearch>
+        </button>
       </form>
     )
   }

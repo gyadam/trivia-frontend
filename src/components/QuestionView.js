@@ -61,23 +61,27 @@ function QuestionView() {
   }
 
   async function getByCategory(id){
-    $.ajax({
-      url: `https://trivbackend.herokuapp.com/categories/${id}/questions`,
-      type: "GET",
-      success: (result) => {
-        setState( prevState => ({
-          ...prevState,
-          questions: result.questions,
-          totalQuestions: result.totalQuestions,
-          currentCategory: result.currentCategory
-        }))
-        return;
-      },
-      error: (error) => {
-        alert('Unable to load questions. Please try your request again')
-        return;
-      }
-    })
+    if (id === "0"){
+      getQuestions();
+    } else {
+      $.ajax({
+        url: `https://trivbackend.herokuapp.com/categories/${id}/questions`,
+        type: "GET",
+        success: (result) => {
+          setState( prevState => ({
+            ...prevState,
+            questions: result.questions,
+            totalQuestions: result.totalQuestions,
+            currentCategory: result.currentCategory
+          }))
+          return;
+        },
+        error: (error) => {
+          alert('Unable to load questions. Please try your request again')
+          return;
+        }
+      })
+    }
   }
 
   async function submitSearch(searchTerm){
@@ -137,21 +141,21 @@ function QuestionView() {
 
   return (
     <div className="question-view">
-      <div className="categories-list">
-        <h2 onClick={() => {getQuestions()}}>Categories</h2>
-        <ul>
-          <li onClick={() => {getQuestions()}}>All</li>
-          {Object.keys(state.categories).map((id, ) => (
-            <li key={id} onClick={() => {getByCategory(id)}}>
-              {state.categories[id]}
-              {/* <img className="category" src={`${state.categories[id].toLowerCase()}.svg`} width="20" height="20"/> */}
-            </li>
-          ))}
-        </ul>
-        <Search submitSearch={submitSearch}/>
-      </div>
       <div className="questions-list">
-        <h2>Questions</h2>
+          <h2>
+            {state.currentCategory ? state.categories[state.currentCategory] + " " : "All "}
+            Questions
+          </h2>
+          <div className="categories-list">
+            <label htmlFor="categories-dropdown">Category: </label>
+            <select name="categories-dropdown" id="categories-dropdown" onChange={(e) => {getByCategory(e.target.value)}}>
+              <option value={0} key={0}>All</option>
+              {Object.keys(state.categories).map((id, ) => (
+                <option value={id} key={id}>{state.categories[id]}</option>
+              ))}
+            </select>
+          </div>
+          <Search submitSearch={submitSearch}/>
         {state.questions.map((q, ind) => (
           <Question
             key={q.id}

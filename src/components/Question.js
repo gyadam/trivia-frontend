@@ -21,7 +21,7 @@ function Question(props) {
           } 
         }}>
           <img src="delete.png" alt="Delete icon"/>
-          <span class="tooltiptext">Login to delete question</span>
+          <span className="tooltiptext">Login to delete question</span>
         </div>
 
         <div className={isAuthenticated ? "edit" : "noedit"}
@@ -31,13 +31,13 @@ function Question(props) {
           } 
         }}>
           <img src="edit.png" alt="Edit icon"/>
-          <span class="tooltiptext">Login to edit question</span>
+          <span className="tooltiptext">Login to edit question</span>
         </div>        
       </div>
       <div className="show-answer button"
           onClick={() => {
             if (isAuthenticated){
-              setVisibility(isVisible);
+              setVisibility(!isVisible);
             }
             else{
               loginWithRedirect({});
@@ -46,9 +46,10 @@ function Question(props) {
 
           {!isAuthenticated ? 'Login for' : (isVisible ? 'Hide' : 'Show')} Answer
         </div>
+      {isAuthenticated ? 
       <div className="answer-holder">
         <span style={{"visibility": isVisible ? 'visible' : 'hidden'}}>Answer: {answer}</span>
-      </div>
+      </div> : null}
     </div>
   );
 }
