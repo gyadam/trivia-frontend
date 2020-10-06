@@ -19,7 +19,7 @@ const Header = () => {
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/list">List</a></li>
+        <li><a href="/list">Questions</a></li>
         <li><a href="/add">Add</a></li>
         <li>{isAuthenticated ?
           <a href="/" onClick={() => logout()}>Logout</a> :

@@ -12,7 +12,10 @@ function Question(props) {
     <div className="Question-holder">
       <div className="Question">{question}</div>
       <div className="Question-status">
-        <img className="category" src={`${category.toLowerCase()}.svg`} alt="Category icon"/>
+        <div className="category-icon">
+          <img className="category" src={`${category.toLowerCase()}.svg`} alt="Category icon"/>
+          <span className="tooltiptext">{category}</span> 
+        </div>
         <div className="difficulty">Difficulty: {difficulty}</div>
         <div className={isAuthenticated ? "delete" : "nodelete"}
         onClick={() => {

@@ -28,7 +28,11 @@
 .questions-list {
   flex-basis: 60%;
   text-align: center;
-  padding-top: 80px;
+  padding-top: 100px;
+}
+
+.questions-list h2{
+  font-size: 30px;
 }
 
 .Question-holder {
@@ -70,9 +74,12 @@
   text-align: center;
 }
 
+.pagination-menu{
+  padding-bottom: 50px;
+}
+
 span.page-num {
   margin: 5px;
-  padding-bottom: 50px;
   color: rgb(22, 94, 161);
   font-weight: bolder;
   text-decoration: underline;
@@ -86,7 +93,7 @@ span.page-num.active {
 }
 
 img.category {
-  width: 30px;
+  width: 20px;
 }
 
 .delete img {
@@ -107,7 +114,7 @@ img.category {
   text-align: center;
   margin-top: 2px;
   margin-left: 3px;
-  padding: 0px 5px;
+  padding: 5px;
 
   /* Position the tooltip */
   position: absolute;
@@ -124,6 +131,13 @@ img.category {
   opacity: 0.3;
 }
 
+.category-icon{
+  margin-top: 5px;
+}
+
+.category-icon:hover .tooltiptext{
+  visibility: visible;
+}
 
 .nodelete:hover .tooltiptext {
   visibility: visible;

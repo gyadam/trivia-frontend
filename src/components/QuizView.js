@@ -93,7 +93,7 @@ class QuizView extends Component {
       return (
           <div className="quiz-play-holder">
               <div className="choose-header">Welcome to QuizOverflow!</div>
-              <div className="select-category">What topic would you like to test yourself in?</div>
+              <div className="select-category">What topic would you like to test your knowledge in?</div>
               <div className="category-holder">
                 <div className="play-category" key={0} value={0} onClick={() => this.selectCategory({type:"General"})}>
                   General (all topics)
