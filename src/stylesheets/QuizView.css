@@ -110,6 +110,11 @@ input[type=text] {
 }
 
 @media screen and (max-width: 900px) {
+
+    .choose-header {
+        padding-top: 80px;
+    }
+
     .play-category{
         width: 300px;
     }
